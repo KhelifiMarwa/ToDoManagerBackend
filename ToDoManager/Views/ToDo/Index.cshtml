@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ToDoManager.Models.ToDoTask>
+
+<h2>Liste des tâches</h2>
+
+<p>
+    <a asp-action="Create">➕ Ajouter une nouvelle tâche</a>
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>Date limite</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model)
+        {
+            <tr>
+                <td>@task.Title</td>
+                <td>@task.Description</td>
+                <td>@task.DueDate.ToShortDateString()</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@task.Id">Modifier</a> |
+                    <a asp-action="Delete" asp-route-id="@task.Id">Supprimer</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

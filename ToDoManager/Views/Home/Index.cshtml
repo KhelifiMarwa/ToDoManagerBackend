@@ -1,0 +1,26 @@
+﻿@model IEnumerable<ToDoManager.Models.ToDoTask>
+
+<h1>Liste des tâches</h1>
+<a href="/ToDo/Create">Ajouter une tâche</a>
+
+@if (Model == null || !Model.Any())
+{
+    <p>Aucune tâche trouvée.</p>
+}
+else
+{
+    <table>
+        <tr><th>Title</th><th>Description</th><th>Actions</th></tr>
+        @foreach (var task in Model)
+        {
+            <tr>
+                <td>@task.Title</td>
+                <td>@task.Description</td>
+                <td>
+                    <a href="/ToDo/Edit/@task.Id">Modifier</a> |
+                    <a href="/ToDo/Delete/@task.Id">Supprimer</a>
+                </td>
+            </tr>
+        }
+    </table>
+}

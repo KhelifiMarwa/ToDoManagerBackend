@@ -1,0 +1,16 @@
+﻿@model ToDoManager.Models.ToDoTask
+
+<h1>Supprimer la tâche</h1>
+
+<p>Voulez-vous vraiment supprimer cette tâche ?</p>
+
+<div>
+    <strong>Titre:</strong> @Model.Title <br />
+    <strong>Description:</strong> @Model.Description
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit">Supprimer</button>
+    <a asp-action="Index">Annuler</a>
+</form>
