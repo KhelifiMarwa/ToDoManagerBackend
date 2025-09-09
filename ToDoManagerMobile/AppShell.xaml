@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Shell
+<simpleShell:SimpleShell
     x:Class="ToDoManagerMobile.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ToDoManagerMobile"
     Shell.FlyoutBehavior="Disabled"
-    Title="ToDoManagerMobile">
+    x:Name="thisShell"
+     xmlns:controls="clr-namespace:ToDoManagerMobile.Controls"
+    xmlns:pages="clr-namespace:ToDoManagerMobile.Views"
+    xmlns:simpleShell="clr-namespace:SimpleToolkit.SimpleShell;assembly=SimpleToolkit.SimpleShell">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <simpleShell:SimpleShell.RootPageContainer>
+        <Grid RowDefinitions="*, Auto">
+            <simpleShell:SimpleNavigationHost/>
+            <controls:BottomNavBar Grid.Row="1" Margin="0,-18,0,0"/>
+        </Grid>
+    </simpleShell:SimpleShell.RootPageContainer>
 
-</Shell>
+    <ShellContent Route="home" ContentTemplate="{DataTemplate pages:HomePage}" />
+    <ShellContent Route="tasks" ContentTemplate="{DataTemplate pages:TasksPage}" />
+    <ShellContent Route="settings" ContentTemplate="{DataTemplate pages:SettingsPage}" />
+</simpleShell:SimpleShell>

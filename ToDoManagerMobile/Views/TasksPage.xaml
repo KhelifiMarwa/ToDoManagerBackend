@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToDoManagerMobile.Views.TasksPage"
+                    BackgroundColor="#F5F5F5">
+    <VerticalStackLayout Padding="20">
+        <Label Text="📝 My Tasks" FontSize="24"/>
+        <CollectionView x:Name="TasksCollection"
+                    ItemsLayout="VerticalList"
+                    Margin="5">
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Frame CornerRadius="15"
+                       Padding="15"
+                       Margin="5"
+                       BackgroundColor="White"
+                       HasShadow="True">
+
+                    <Grid ColumnDefinitions="40,*,Auto"
+                          RowDefinitions="Auto,Auto,Auto"
+                          ColumnSpacing="10">
+
+                   
+                        <Image Grid.RowSpan="3"
+                               Source="{Binding IsCompleted, Converter={StaticResource BoolToImageConverter}}"
+                               WidthRequest="24"
+                               HeightRequest="24"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"/>
+
+                       
+                        <Label Grid.Column="1"
+                               Text="{Binding Title}"
+                               FontAttributes="Bold"
+                               FontSize="18"
+                               TextColor="#212121"/>
+
+                        <ImageButton Grid.Column="2"
+                                     Source="edit.png"
+                                     WidthRequest="20"
+                                     HeightRequest="20"
+                                     BackgroundColor="Transparent"
+                                     CommandParameter="{Binding Id}"/>
+
+                    
+                        <Label Grid.Row="1" Grid.Column="1"
+                               Text="{Binding Description}"
+                               FontSize="14"
+                               TextColor="#757575"
+                               LineBreakMode="WordWrap"/>
+
+                     
+                        <Label Grid.Row="2" Grid.Column="1"
+                               Text="{Binding DueDate, StringFormat='📅 {0:dd/MM/yyyy}'}"
+                               FontSize="12"
+                               TextColor="#2196F3"
+                               VerticalOptions="End"/>
+                    </Grid>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+    
+  
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using SimpleToolkit.Core;
+using SimpleToolkit.SimpleShell;
 
 namespace ToDoManagerMobile
 {
@@ -9,6 +11,8 @@ namespace ToDoManagerMobile
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                 .UseSimpleToolkit()
+                     .UseSimpleShell()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -16,7 +20,7 @@ namespace ToDoManagerMobile
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
