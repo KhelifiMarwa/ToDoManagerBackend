@@ -12,7 +12,7 @@ namespace ToDoManagerMobile
             builder
                 .UseMauiApp<App>()
                  .UseSimpleToolkit()
-                     .UseSimpleShell()
+                   .UseSimpleShell()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

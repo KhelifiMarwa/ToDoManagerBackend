@@ -15,14 +15,13 @@ namespace ToDoManagerMobile.Services
         {
             _httpClient = new HttpClient
             {
-                BaseAddress = new Uri("http://192.168.137.41:45455/") // URL de ton API
+                BaseAddress = new Uri("http://192.168.0.128:45455/") 
             };
         }
 
 
         public async Task<List<ToDoTask>> GetAllAsync()
         {
-            // l’endpoint exact est api/todo → pas /
             return await _httpClient.GetFromJsonAsync<List<ToDoTask>>("api/todo");
         }
 
