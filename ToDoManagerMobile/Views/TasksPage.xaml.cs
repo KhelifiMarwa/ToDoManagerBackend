@@ -15,7 +15,6 @@ public partial class TasksPage : ContentPage
     }
     private async void OnAddTaskClicked(object sender, EventArgs e)
     {
-        // Navigate to the AddToDoPage (must be registered in AppShell)
         await Shell.Current.GoToAsync(nameof(AddToDoPage));
     }
     private async void LoadTasks()
