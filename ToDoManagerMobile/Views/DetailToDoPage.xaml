@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToDoManagerMobile.Views.DetailToDoPage"
+             Title="DetailToDoPage">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label Text="📝 Task Details"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+            <Frame CornerRadius="15" Padding="20" BackgroundColor="White" HasShadow="True">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Title:" FontAttributes="Bold" />
+                    <Label Text="{Binding Title}" FontSize="18" />
+
+                    <Label Text="Description:" FontAttributes="Bold" />
+                    <Label Text="{Binding Description}" FontSize="16" TextColor="#424242" />
+
+                    <Label Text="Due Date:" FontAttributes="Bold" />
+                    <Label Text="{Binding DueDate, StringFormat='{0:dd MMM yyyy}'}" TextColor="#1976D2" />
+
+                    <Label Text="Completed:" FontAttributes="Bold" />
+                    <Label Text="{Binding IsCompleted}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Button Text="✅ Mark as Completed"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    CornerRadius="12"
+                    Command="{Binding MarkAsDoneCommand}" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -24,17 +24,12 @@ public partial class TasksPage : ContentPage
         TasksCollection.ItemsSource = tasks;
     }
 
-    //private async void OnAddTaskClicked(object sender, EventArgs e)
-    //{
-    //    var newTask = new ToDoTask
-    //    {
-    //        Title = "Nouvelle tâche",
-    //        Description = "Description...",
-    //        IsCompleted = false,
-    //        DueDate = DateTime.Now.AddDays(1)
-    //    };
-
-    //    await _apiService.CreateAsync(newTask);
-    //    LoadTasks(); // Recharge la liste
-    //}
+    private async void OnTaskSelected(object sender, SelectionChangedEventArgs e)
+    {
+        if (e.CurrentSelection.FirstOrDefault() is ToDoTask selectedTask)
+        {
+            await Navigation.PushAsync(new DetailToDoPage(selectedTask));
+            ((CollectionView)sender).SelectedItem = null;
+        }
+    }
 }
