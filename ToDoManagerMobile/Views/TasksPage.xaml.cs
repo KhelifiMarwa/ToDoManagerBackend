@@ -22,6 +22,40 @@ public partial class TasksPage : ContentPage
         var tasks = await _apiService.GetAllAsync();
         TasksCollection.ItemsSource = tasks;
     }
+    private async Task LoadTasksAsync()
+    {
+        try
+        {
+            var tasks = await _apiService.GetAllAsync();
+            TasksCollection.ItemsSource = tasks;
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", $"Failed to load tasks: {ex.Message}", "OK");
+        }
+    }
+
+    private async void OnDeleteClicked(object sender, EventArgs e)
+    {
+        if (sender is ImageButton button && button.CommandParameter is int id)
+        {
+            bool confirm = await DisplayAlert("Confirm", "Delete this task?", "Yes", "No");
+            if (!confirm)
+                return;
+
+            try
+            {
+                await _apiService.DeleteAsync(id);
+                await DisplayAlert("Deleted", "Task removed successfully", "OK");
+                await LoadTasksAsync(); // refresh list
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"Failed to delete: {ex.Message}", "OK");
+            }
+        }
+    }
+
 
     private async void OnTaskSelected(object sender, SelectionChangedEventArgs e)
     {

@@ -25,12 +25,19 @@ SelectionMode="Single"      ItemsLayout="VerticalList"
                        BackgroundColor="White"
                        HasShadow="True">
 
-                    <Grid ColumnDefinitions="40,*,Auto"
+                    <Grid ColumnDefinitions="40,*,*"
                           RowDefinitions="Auto,Auto,Auto"
                           ColumnSpacing="10">
 
-                   
-                        <Image Grid.RowSpan="3"
+                            <ImageButton Grid.Column="2"
+             Source="delete.png"
+             WidthRequest="12"
+             HeightRequest="12" Grid.RowSpan="3"
+             BackgroundColor="Transparent"
+             CommandParameter="{Binding Id}"
+             Clicked="OnDeleteClicked"/>
+
+                            <Image Grid.RowSpan="3"
                                Source="{Binding IsCompleted, Converter={StaticResource BoolToImageConverter}}"
                                WidthRequest="24"
                                HeightRequest="24"
@@ -44,12 +51,12 @@ SelectionMode="Single"      ItemsLayout="VerticalList"
                                FontSize="18"
                                TextColor="#212121"/>
 
-                        <ImageButton Grid.Column="2"
+                        <!--<ImageButton Grid.Column="2"
                                      Source="edit.png"
                                      WidthRequest="20"
                                      HeightRequest="20"
                                      BackgroundColor="Transparent"
-                                     CommandParameter="{Binding Id}"/>
+                                     CommandParameter="{Binding Id}"/>-->
 
                     
                         <Label Grid.Row="1" Grid.Column="1"
