@@ -20,4 +20,8 @@
     <ShellContent Route="home" ContentTemplate="{DataTemplate pages:HomePage}" />
     <ShellContent Route="tasks" ContentTemplate="{DataTemplate pages:TasksPage}" />
     <ShellContent Route="settings" ContentTemplate="{DataTemplate pages:SettingsPage}" />
+    
+    <ShellContent Route="addtodo" ContentTemplate="{DataTemplate pages:AddToDoPage}" />
+    <ShellContent Route="edittodo" ContentTemplate="{DataTemplate pages:EditToDoPage}" />
+
 </simpleShell:SimpleShell>

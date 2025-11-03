@@ -19,7 +19,12 @@
         <DatePicker x:Name="DueDatePicker"
                     MinimumDate="{x:Static sys:DateTime.Now}"
                     xmlns:sys="clr-namespace:System;assembly=netstandard" />
-
+        <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+            <Label Text="Completed:" 
+                       VerticalOptions="Center"
+                       FontSize="16"/>
+            <CheckBox x:Name="CompletedCheckBox" />
+        </HorizontalStackLayout>
         <Button Text="Add Task"
                 BackgroundColor="#2196F3"
                 TextColor="White"

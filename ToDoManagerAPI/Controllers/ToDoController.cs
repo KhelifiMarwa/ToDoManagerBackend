@@ -65,6 +65,18 @@ namespace ToDoManagerAPI.Controllers
 
             return NoContent();
         }
+        [HttpGet("recent")]
+        public async Task<ActionResult<IEnumerable<ToDoTask>>> GetRecentTasks()
+        {
+            var tasks = await _service.GetAllAsync();
+
+            var recentTasks = tasks
+                .OrderByDescending(t => t.DueDate)
+                .Take(3); 
+
+            return Ok(recentTasks);
+        }
+
     }
 
 }

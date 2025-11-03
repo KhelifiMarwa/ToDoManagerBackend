@@ -26,7 +26,7 @@ public partial class AddToDoPage : ContentPage
             Title = TitleEntry.Text,
             Description = DescriptionEntry.Text,
             DueDate = DueDatePicker.Date,
-            IsCompleted = false
+            IsCompleted = CompletedCheckBox.IsChecked
         };
 
         try
@@ -35,6 +35,10 @@ public partial class AddToDoPage : ContentPage
             await DisplayAlert("Success", $"Task '{createdTask.Title}' added!", "OK");
             TitleEntry.Text = string.Empty;
             DescriptionEntry.Text = string.Empty;
+            // Après avoir ajouté ou édité la tâche
+            await Shell.Current.GoToAsync("///tasks");
+
+            //await Shell.Current.GoToAsync("..");
         }
         catch (Exception ex)
         {

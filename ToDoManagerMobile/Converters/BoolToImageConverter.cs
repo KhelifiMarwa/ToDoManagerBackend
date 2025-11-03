@@ -12,9 +12,10 @@ namespace ToDoManagerMobile.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is bool isCompleted)
-                return isCompleted ? "check.png" : "uncheck.png";
-
-            return "uncheck.png";
+            {
+                return isCompleted ? "✅" : "⏳";
+            }
+            return "⏳"; 
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

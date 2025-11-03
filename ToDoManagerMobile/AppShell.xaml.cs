@@ -8,6 +8,8 @@ namespace ToDoManagerMobile
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(AddToDoPage), typeof(AddToDoPage));
+            Routing.RegisterRoute(nameof(TasksPage), typeof(TasksPage));
+            Routing.RegisterRoute(nameof(EditToDoPage), typeof(EditToDoPage));
         }
       
     }

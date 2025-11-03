@@ -46,5 +46,10 @@ namespace ToDoManagerMobile.Services
             var response = await _httpClient.DeleteAsync($"api/todo/{id}");
             return response.IsSuccessStatusCode;
         }
+        public async Task<IEnumerable<ToDoTask>> GetRecentAsync()
+        {
+            return await _httpClient.GetFromJsonAsync<IEnumerable<ToDoTask>>("api/todo/recent");
+        }
+
     }
 }

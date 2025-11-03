@@ -3,58 +3,98 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ToDoManagerMobile.Views.HomePage"
              BackgroundColor="#F5F5F5">
-    <VerticalStackLayout Padding="20">
-        <Label Text="🏠 Welcome, Marwa!" FontSize="24"/>
-      
+ 
+
         <ScrollView>
             <VerticalStackLayout Padding="20" Spacing="20">
 
-                <!-- Welcome --><!--
-                <Label Text="Welcome, Marwa!"
-                   FontSize="24"
+                <!-- Welcome -->
+                <Label Text="🏠 Welcome, Marwa!"
+                   FontSize="26"
                    FontAttributes="Bold"
-                   TextColor="#212121"/>-->
+                   TextColor="#212121"
+                   HorizontalOptions="Center" />
 
                 <!-- Tasks summary -->
-                <Grid ColumnDefinitions="*,*,*"
-                  RowDefinitions="Auto"
-                  BackgroundColor="White"
-                  Padding="15">
+                <Frame CornerRadius="15" Padding="15" HasShadow="True" BackgroundColor="White">
+                    <Grid ColumnDefinitions="*,*,*">
+                        <StackLayout HorizontalOptions="Center">
+                            <Label Text="Total Tasks" FontSize="14" TextColor="#757575"/>
+                            <Label x:Name="TotalLabel" Text="0" FontSize="20"
+                               FontAttributes="Bold" TextColor="#2196F3"
+                               HorizontalOptions="Center"/>
+                        </StackLayout>
 
-                    <StackLayout HorizontalOptions="Center">
-                        <Label Text="Total Tasks" FontSize="14" TextColor="#757575"/>
-                        <Label Text="12" FontSize="18" HorizontalOptions="Center" FontAttributes="Bold" TextColor="#2196F3"/>
-                    </StackLayout>
+                        <StackLayout HorizontalOptions="Center" Grid.Column="1">
+                            <Label Text="Completed" FontSize="14" TextColor="#757575"/>
+                            <Label x:Name="CompletedLabel" Text="0" FontSize="20"
+                               FontAttributes="Bold" TextColor="#4CAF50"
+                               HorizontalOptions="Center"/>
+                        </StackLayout>
 
-                    <StackLayout HorizontalOptions="Center" Grid.Column="1">
-                        <Label Text="Completed" FontSize="14" TextColor="#757575"/>
-                        <Label Text="5" FontSize="18" HorizontalOptions="Center" FontAttributes="Bold" TextColor="#4CAF50"/>
-                    </StackLayout>
-
-                    <StackLayout HorizontalOptions="Center" Grid.Column="2">
-                        <Label Text="Pending" FontSize="14" TextColor="#757575"/>
-                        <Label Text="7" FontSize="18" HorizontalOptions="Center" FontAttributes="Bold" TextColor="#F44336"/>
-                    </StackLayout>
-                </Grid>
+                        <StackLayout HorizontalOptions="Center" Grid.Column="2">
+                            <Label Text="Pending" FontSize="14" TextColor="#757575"/>
+                            <Label x:Name="PendingLabel" Text="0" FontSize="20"
+                               FontAttributes="Bold" TextColor="#F44336"
+                               HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
 
                 <!-- Quick actions -->
                 <HorizontalStackLayout Spacing="15" HorizontalOptions="Center">
-                    <Button Text="Add Task" BackgroundColor="#2196F3" TextColor="White" CornerRadius="20" WidthRequest="120"/>
-                    <Button Text="View Tasks" BackgroundColor="#4CAF50" TextColor="White" CornerRadius="20" WidthRequest="120"/>
+                    <Button Text="➕ Add Task"
+                        BackgroundColor="#2196F3"
+                        TextColor="White"
+                        CornerRadius="20"
+                        WidthRequest="140"
+                        Clicked="OnAddTaskClicked"/>
+
+                    <Button Text="📋 View Tasks"
+                        BackgroundColor="#4CAF50"
+                        TextColor="White"
+                        CornerRadius="20"
+                        WidthRequest="140"
+                        Clicked="OnViewTasksClicked"/>
                 </HorizontalStackLayout>
 
-                <!-- Recent tasks preview -->
-                <Label Text="Recent Tasks" FontSize="18" FontAttributes="Bold" TextColor="#212121"/>
+                <!-- Recent Tasks -->
+                <Label Text="🕒 Recent Tasks"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="#212121"/>
 
                 <CollectionView x:Name="RecentTasksCollection"
                             ItemsLayout="VerticalList"
-                            HeightRequest="200">
+                            EmptyView="No recent tasks available 😴">
+
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame CornerRadius="10" Padding="10" Margin="5" BackgroundColor="White" HasShadow="True">
+                            <Frame CornerRadius="12"
+                               Padding="12"
+                               Margin="5"
+                               BackgroundColor="White"
+                               HasShadow="True">
                                 <Grid ColumnDefinitions="*,Auto">
-                                    <Label Text="{Binding Title}" FontSize="16" FontAttributes="Bold"/>
-                                    <Label Text="{Binding DueDate, StringFormat='{0:MM/dd/yyyy}'}" FontSize="12" TextColor="#2196F3"/>
+                                    <VerticalStackLayout>
+                                        <Label Text="{Binding Title}"
+                                           FontSize="16"
+                                           FontAttributes="Bold"
+                                           TextColor="#212121" />
+                                        <Label Text="{Binding Description}"
+                                           FontSize="14"
+                                           TextColor="#757575"
+                                           LineBreakMode="TailTruncation" />
+                                        <Label Text="{Binding DueDate, StringFormat='📅 {0:dd/MM/yyyy}'}"
+                                           FontSize="12"
+                                           TextColor="#2196F3"/>
+                                    </VerticalStackLayout>
+
+                                    <Image Source="{Binding IsCompleted, Converter={StaticResource BoolToImageConverter}}"
+                                       WidthRequest="24"
+                                       HeightRequest="24"
+                                       Grid.Column="1"
+                                       VerticalOptions="Center" />
                                 </Grid>
                             </Frame>
                         </DataTemplate>
@@ -63,5 +103,5 @@
 
             </VerticalStackLayout>
         </ScrollView>
-    </VerticalStackLayout>
+  
 </ContentPage>

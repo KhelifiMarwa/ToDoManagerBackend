@@ -7,5 +7,7 @@
         public string? Description { get; set; }
         public bool IsCompleted { get; set; } = false;
         public DateTime DueDate { get; set; } = DateTime.Now.AddDays(1);
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+
     }
 }

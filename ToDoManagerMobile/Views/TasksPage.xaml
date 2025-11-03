@@ -20,32 +20,43 @@ SelectionMode="Single"      ItemsLayout="VerticalList"
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <Frame CornerRadius="15"
-                       Padding="15"
+                       Padding="5"
                        Margin="5"
                        BackgroundColor="White"
                        HasShadow="True">
 
-                    <Grid ColumnDefinitions="40,*,*"
+                    <Grid ColumnDefinitions="40,*,auto"
                           RowDefinitions="Auto,Auto,Auto"
-                          ColumnSpacing="10">
-
-                            <ImageButton Grid.Column="2"
+                          ColumnSpacing="5">
+                            <HorizontalStackLayout  Padding="0" Grid.Column="2"  Grid.RowSpan="3">
+                         
+                                    <ImageButton 
              Source="delete.png"
              WidthRequest="12"
-             HeightRequest="12" Grid.RowSpan="3"
+             HeightRequest="12"
              BackgroundColor="Transparent"
              CommandParameter="{Binding Id}"
              Clicked="OnDeleteClicked"/>
-
-                            <Image Grid.RowSpan="3"
+                            <ImageButton Source="edit.png"
+             WidthRequest="12"
+             HeightRequest="12" 
+             BackgroundColor="Transparent"
+             CommandParameter="{Binding Id}"
+             Clicked="OnEditClicked"/>
+                            </HorizontalStackLayout>
+                            <!--<Image Grid.RowSpan="3"
                                Source="{Binding IsCompleted, Converter={StaticResource BoolToImageConverter}}"
                                WidthRequest="24"
                                HeightRequest="24"
                                VerticalOptions="Center"
-                               HorizontalOptions="Center"/>
+                               HorizontalOptions="Center"/>-->
+                            <Label Text="{Binding IsCompleted, Converter={StaticResource BoolToImageConverter}}"
+       FontSize="24" Grid.RowSpan="3"
+       VerticalOptions="Center"
+       HorizontalOptions="Center"/>
 
-                       
-                        <Label Grid.Column="1"
+
+                            <Label Grid.Column="1"
                                Text="{Binding Title}"
                                FontAttributes="Bold"
                                FontSize="18"
